@@ -47,9 +47,9 @@ public class LembreteService {
 	@Transactional
 	public void deletarLembrete(long userId, long registroId) {
 		var usuario = recuperarUsuario(userId);
-			
+
 		var lembrete = recuperarLembrete(registroId);
-		
+
 		if (!lembrete.getUsuario().equals(usuario)) {
 			log.info("getid: " + lembrete.getUsuario().getId());
 			throw new RestNotFoundException("Lembrete informado não pertence ao Usuário informado");
@@ -66,18 +66,25 @@ public class LembreteService {
 	}
 
 
-	public Lembrete atualizarLembrete(Lembrete lembrete) {
-		log.info("Atualizando lembrete do dia: " + lembrete);
+	public Lembrete atualizarLembrete(Lembrete lembrete, long id) {
+		var lembreteExistente = recuperarLembrete(id);
+		lembreteExistente.setNome(lembrete.getNome());
+		lembreteExistente.setDosagem(lembrete.getDosagem());
+		lembreteExistente.setDataInicial(lembrete.getDataInicial());
+		lembreteExistente.setHorarioInicial(lembrete.getHorarioInicial());
+		lembreteExistente.setIntervalo(lembrete.getIntervalo());
+		lembreteExistente.setDataFinal(lembrete.getDataFinal());
 
-		return repository.save(lembrete);
+
+		return atualizarLembrete(lembreteExistente);
 	}
 
 	private Usuario recuperarUsuario(long userId) {
 		log.info("Recuperando usuario com id: " + userId);
 
 		Usuario usuario = usuarioRepository
-							.findById(userId)
-							.orElseThrow(() -> new RestNotFoundException("Usuario não encontrado"));
+				.findById(userId)
+				.orElseThrow(() -> new RestNotFoundException("Usuario não encontrado"));
 
 		return usuario;
 	}
@@ -86,9 +93,16 @@ public class LembreteService {
 		log.info("Recuperando lembrete com id: " + registroId);
 
 		Lembrete lembrete = repository
-								.findById(registroId)
-								.orElseThrow(() -> new RestNotFoundException("Lembrete não encontrado"));
+				.findById(registroId)
+				.orElseThrow(() -> new RestNotFoundException("Lembrete não encontrado"));
 
 		return lembrete;
+	}
+
+	private Lembrete atualizarLembrete(Lembrete lembrete)
+	{
+		log.info("Atualizando o lembrete com id: " + lembrete.getId());
+
+		return repository.save(lembrete);
 	}
 }
