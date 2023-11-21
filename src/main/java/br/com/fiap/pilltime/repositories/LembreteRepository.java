@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface RegistroRepository extends JpaRepository<Lembrete, Long> {
+public interface LembreteRepository extends JpaRepository<Lembrete, Long> {
     boolean existsByIdAndUsuarioId(long registroId, long usuarioId);
 
     @Query("SELECT l FROM Lembrete l WHERE l.usuario.id = :usuarioId")
