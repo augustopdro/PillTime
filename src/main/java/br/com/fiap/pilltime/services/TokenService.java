@@ -27,7 +27,7 @@ public class TokenService {
         var token = JWT.create()
                 .withSubject(credencial.email())
                 .withExpiresAt(Instant.now().plus(24, ChronoUnit.HOURS))
-                .withIssuer("DreamControl")
+                .withIssuer("PillTime")
                 .sign(alg);
 
         return new TokenDTO(token, "JWT", "Bearer");
@@ -36,7 +36,7 @@ public class TokenService {
     public Usuario valideAndGetUserBy(String token) {
         Algorithm alg = Algorithm.HMAC256(secret);
         var email =  JWT.require(alg)
-                .withIssuer("DreamControl")
+                .withIssuer("PillTime")
                 .build()
                 .verify(token)
                 .getSubject()

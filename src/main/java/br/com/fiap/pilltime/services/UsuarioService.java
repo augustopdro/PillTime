@@ -55,7 +55,7 @@ public class UsuarioService {
 		}
 
 		if(usuario.senha() != null && !usuario.senha().equals(repositoryResponse.getSenha())) {
-			isUpdatable = repositoryResponse.setSenha(usuario.senha());
+			isUpdatable = repositoryResponse.setSenha(encoder.encode(usuario.senha()));
 		}
 
 		if(isUpdatable) {
