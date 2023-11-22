@@ -19,7 +19,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping("/api/sono")
+@RequestMapping("/api/lembrete")
 @SecurityRequirement(name = "bearer-key")
 public class LembreteController {
 	private LembreteService lembreteService;
@@ -36,7 +36,7 @@ public class LembreteController {
     public ResponseEntity<EntityModel<Lembrete>> registrarLembrete(@Valid @RequestBody Lembrete registro, @PathVariable long userId) {
         log.info("Cadastrando registro de lembrete");
 
-        Lembrete retornoService = (Lembrete) lembreteService.registrarLembrete(registro, userId);
+        var retornoService = lembreteService.registrarLembrete(registro, userId);
 
 
         var entityModel = EntityModel.of(
@@ -52,7 +52,7 @@ public class LembreteController {
     @PutMapping("{id}")
     public ResponseEntity<EntityModel<Lembrete>> atualizarLembrete(@RequestBody Lembrete lembrete, @PathVariable long userId)
     {
-        log.info("Atualizando produto de usuario pelo id: " + userId);
+        log.info("Atualizando lembrete de usuario pelo id: " + userId);
 
         var retornoService = lembreteService.atualizarLembrete(lembrete, userId);
         if(retornoService == null)

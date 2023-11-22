@@ -30,7 +30,7 @@ public class LembreteService {
 		this.usuarioRepository = usuarioRepository;
 	}
 
-	public List<Lembrete> registrarLembrete(Lembrete lembrete, long userId) {
+	public Lembrete registrarLembrete(Lembrete lembrete, long userId) {
 		log.info("Registrando um lembrete: ");
 
 		var usuario = recuperarUsuario(userId);
@@ -39,9 +39,9 @@ public class LembreteService {
 		lembrete.setUsuario(usuario);
 		lembretes.add(lembrete);
 
-		var registroSalvo = salvarLembrete(lembrete);
+		//var registroSalvo = salvarLembrete(lembrete);
 
-		return lembretes;
+		return salvarLembrete(lembrete);
 	}
 
 	@Transactional
