@@ -41,21 +41,23 @@ public class Lembrete {
     @Column(nullable = true)
     private LocalDate dataFinal;
 
+    @Column(nullable = true)
+    private String arquivoImagem;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
     @JsonIgnore
     private Usuario usuario;
 
-    @OneToOne
-    private Imagem imagem;
 
-    public Lembrete(String nome, String dosagem, LocalDate dataInicial, LocalTime horarioInicial, Integer intervalo, LocalDate dataFinal) {
+    public Lembrete(String nome, String dosagem, LocalDate dataInicial, LocalTime horarioInicial, Integer intervalo, LocalDate dataFinal, String arquivoImagem) {
         this.nome = nome;
         this.dosagem = dosagem;
         this.dataInicial = dataInicial;
         this.horarioInicial = horarioInicial;
         this.intervalo = intervalo;
         this.dataFinal = dataFinal;
+        this.arquivoImagem = arquivoImagem;
     }
 
     @Override
@@ -67,6 +69,7 @@ public class Lembrete {
                 ", horarioInicial=" + horarioInicial +
                 ", intervalo=" + intervalo +
                 ", dataFinal=" + dataFinal +
+                ", arquivoImagem=" + arquivoImagem +
                 '}';
     }
 }

@@ -20,7 +20,7 @@ public class HistoricoService {
     }
 
     public PaginationResponseDTO recuperarHistorico(long userId, Pageable pageable) {
-        log.info("Buscando historico de sono do usuário: " + userId);
+        log.info("Buscando historico de lembretes do usuário: " + userId);
 
         var registros = lembreteRepository.getAllRegisters(userId, pageable);
 

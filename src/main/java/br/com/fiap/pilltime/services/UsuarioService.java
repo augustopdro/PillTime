@@ -31,7 +31,7 @@ public class UsuarioService {
 
 	public Usuario cadastrar(Usuario usuario)
     {
-        log.info("Cadastrando usuario.");
+        log.info("Cadastrando usuario");
 		usuario.setSenha(encoder.encode(usuario.getSenha()));
 		repository.save(usuario);
 

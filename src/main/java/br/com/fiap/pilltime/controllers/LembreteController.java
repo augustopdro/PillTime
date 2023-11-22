@@ -49,20 +49,21 @@ public class LembreteController {
                 .body(entityModel);
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<EntityModel<Lembrete>> atualizarLembrete(@RequestBody Lembrete lembrete, @PathVariable long userId)
-    {
-        log.info("Atualizando lembrete de usuario pelo id: " + userId);
 
-        var retornoService = lembreteService.atualizarLembrete(lembrete, userId);
+    @PutMapping("{lembreteId}")
+    public ResponseEntity<EntityModel<Lembrete>> atualizarLembrete(@RequestBody Lembrete lembrete, @PathVariable long lembreteId)
+    {
+        log.info("Atualizando lembrete de usuario pelo id: " + lembreteId);
+
+        var retornoService = lembreteService.atualizarLembrete(lembrete, lembreteId);
         if(retornoService == null)
             throw new RestBadRequestException("Atualização não efetuada. Tente novamente com dados diferentes.");
 
         var produtoAtualizado = EntityModel.of(
                 retornoService,
-                linkTo(methodOn(LembreteController.class).atualizarLembrete(lembrete, userId)).withSelfRel(),
-                linkTo(methodOn(LembreteController.class).registrarLembrete(lembrete, userId)).withRel("cadastrar"),
-                linkTo(methodOn(LembreteController.class).deletarLembrete(userId, lembrete.getId())).withRel("deletar")
+                linkTo(methodOn(LembreteController.class).atualizarLembrete(lembrete, lembreteId)).withSelfRel(),
+                linkTo(methodOn(LembreteController.class).registrarLembrete(lembrete, lembreteId)).withRel("cadastrar"),
+                linkTo(methodOn(LembreteController.class).deletarLembrete(lembreteId, lembrete.getId())).withRel("deletar")
         );
 
         return ResponseEntity.ok(produtoAtualizado);
@@ -72,7 +73,7 @@ public class LembreteController {
     @DeleteMapping("{userId}/deletar/{registroId}")
     public ResponseEntity<Lembrete> deletarLembrete(@PathVariable long userId, @PathVariable long registroId)
     {
-        log.info("Deletando registro de sono");
+        log.info("Deletando lembrete");
 
         lembreteService.deletarLembrete(userId, registroId);
         return ResponseEntity.noContent().build();

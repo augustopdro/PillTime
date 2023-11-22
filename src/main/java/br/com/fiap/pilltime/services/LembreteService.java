@@ -12,9 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class LembreteService {
@@ -61,19 +58,21 @@ public class LembreteService {
 	}
 
 	private Lembrete salvarLembrete(Lembrete lembrete){
-		log.info("Registrando um periodo de sono: " + lembrete);
+		log.info("Registrando um lembrete: " + lembrete);
 		return repository.save(lembrete);
 	}
 
 
 	public Lembrete atualizarLembrete(Lembrete lembrete, long id) {
 		var lembreteExistente = recuperarLembrete(id);
+		lembrete.setId(lembreteExistente.getId());
 		lembreteExistente.setNome(lembrete.getNome());
 		lembreteExistente.setDosagem(lembrete.getDosagem());
 		lembreteExistente.setDataInicial(lembrete.getDataInicial());
 		lembreteExistente.setHorarioInicial(lembrete.getHorarioInicial());
 		lembreteExistente.setIntervalo(lembrete.getIntervalo());
 		lembreteExistente.setDataFinal(lembrete.getDataFinal());
+		lembreteExistente.setArquivoImagem(lembrete.getArquivoImagem());
 
 
 		return atualizarLembrete(lembreteExistente);
@@ -99,9 +98,8 @@ public class LembreteService {
 		return lembrete;
 	}
 
-	private Lembrete atualizarLembrete(Lembrete lembrete)
-	{
-		log.info("Atualizando o lembrete com id: " + lembrete.getId());
+	private Lembrete atualizarLembrete(Lembrete lembrete) {
+		log.info("Atualizando o lembrete do usuario de id: " + lembrete.getId());
 
 		return repository.save(lembrete);
 	}
