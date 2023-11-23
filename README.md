@@ -48,7 +48,7 @@ A API está hospedada na Azure (https://pilltime.azurewebsites.net/). Para testa
 
 # Arquitetura
 
-<img align="center" alt="Diagrama-UML" src="https://github.com/augustopdro/SmartSellers-DBE/blob/master/ArquiteturaSmartsellers.jpg?raw=true">
+<img align="center" alt="Diagrama-UML" src="https://github.com/augustopdro/PillTime/blob/master/ArquiteturaPillTime.jpg?raw=true">
 
 ---
 
