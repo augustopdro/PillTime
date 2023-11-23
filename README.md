@@ -20,7 +20,7 @@ A API está hospedada na Azure (https://pilltime.azurewebsites.net/). Para testa
 **IMPORTANTE:** Para testar a API, primeiramente use o endpoint de "Usuario - Cadastrar" para criar seu usuario, após isso, use o endpoint "Usuario - Login" para logar, ao fazer isso a requisição vai retornar um response com um Bearer Token, salve este token. Para conseguir testar todos os outros endpoints, você deve ir na aba "Authorization", no campo "Type" selecione o valor "Bearer Token" e no campo "Token" cole o token que você salvou anteriormente. Fazendo isso, será possível testar todos os outros endpoints de maneira adequada. Em caso de dúvidas, assista ao tutorial abaixo no youtube mostrando o passo a passo de como fazer isso. 
 
 - Postman: https://www.postman.com/altimetry-astronaut-37339768/workspace/pilltime/collection/23202593-1f7b59a0-b414-465c-abaa-9aaa09dabb14?action=share&creator=23202593
-- Vídeo tutorial: 
+- Vídeo tutorial: https://youtu.be/lYxjtwObCiA
 
 
 # Funcionalidades Principais
